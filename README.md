@@ -6,37 +6,40 @@ Use [TailwindCSS](https://tailwindcss.com) with [Remix](https://remix.run) witho
 
 ```sh
 # npm
-npm install remix-tailwind tailwindcss postcss
+npm install remix-tailwind
+npm install --dev tailwindcss postcss
 
 # pnpm
-pnpm install remix-tailwind tailwindcss postcss
+pnpm install remix-tailwind
+pnpm install --dev tailwindcss postcss
 
 # yarn
-yarn add remix-tailwind tailwindcss postcss
+yarn add remix-tailwind
+yarn add -D tailwindcss postcss
 ```
 
 ## Usage
 
-Generate a tailwind config:
+1. Generate a tailwind config:
 
-```sh
-npx tailwindcss init
-```
+   ```sh
+   npx tailwindcss init
+   ```
 
-Create a file at `app/routes/tailwindcss.tsx` or `app/routes/tailwindcss.js`:
+1. Create a file at `app/routes/tailwindcss.tsx` or `app/routes/tailwindcss.js`:
 
-```ts
-import { createLoader } from "remix-tailwind"
-export const loader = createLoader()
-```
+   ```ts
+   import { createLoader } from "remix-tailwind"
+   export const loader = createLoader()
+   ```
 
-Add a link to this route in `app/root.tsx`:
+1. Add a link to this route in `app/root.tsx`:
 
-```js
-export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: "/tailwindcss" }]
-}
-```
+   ```js
+   export const links: LinksFunction = () => {
+     return [{ rel: "stylesheet", href: "/tailwindcss" }]
+   }
+   ```
 
 And that's it! Get styling. 🖌
 
@@ -64,12 +67,8 @@ body {
 
 ## How it works
 
-In development:
+- Reads your CSS and config when requesting the route
+- Processes tailwind CSS via PostCSS and returns it as a response
+- Remix takes that CSS and applies it to the page (via a link tag, that ol' thing)
 
-- Reads your tailwind CSS file (if provided) and config when requesting the route
-- Returns the CSS from the route, same as if you imported it
-
-In production:
-
-- Reads the tailwind CSS file and config
-- Caches the output CSS and returns that on each request (but HTTP caching should do most of the work anyway 😜)
+In production, the CSS is only built once, and cached on every following request. This is _probably_ fine, but you could consider prebuilding the CSS yourself if you like.
