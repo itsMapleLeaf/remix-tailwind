@@ -1,0 +1,29 @@
+{
+  "name": "remix-tailwind",
+  "version": "0.0.0",
+  "description": "Use TailwindCSS with Remix without an extra build step!",
+  "author": "itsMapleLeaf",
+  "license": "MIT",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "release": "release-it",
+    "prepublishOnly": "pnpm build"
+  },
+  "dependencies": {
+    "@remix-run/server-runtime": ">=1",
+    "@types/node": "^16.11.9",
+    "@types/tailwindcss": "^2.2.4"
+  },
+  "peerDependencies": {
+    "postcss": ">=8",
+    "tailwindcss": ">=2"
+  },
+  "devDependencies": {
+    "postcss": "^8.3.11",
+    "release-it": "^14.11.8",
+    "tailwindcss": "^3.0.0-alpha.2",
+    "typescript": "^4.5.2"
+  }
+}
