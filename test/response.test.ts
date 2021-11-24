@@ -16,12 +16,16 @@ function defineTests(nodeEnv: "development" | "production") {
 
   test(`serving default css in ${nodeEnv}`, async () => {
     // test multiple times just to be sure
-    expect(await (await serveTailwindCss({} as any)).text()).toMatchSnapshot()
-    expect(await (await serveTailwindCss({} as any)).text()).toMatchSnapshot()
+    expect(await (await serveTailwindCss()).text()).toMatchSnapshot()
+    expect(await (await serveTailwindCss()).text()).toMatchSnapshot()
   })
 
   test(`serving custom css in ${nodeEnv}`, async () => {
-    expect(await (await serveTailwindCss({} as any)).text()).toMatchSnapshot()
-    expect(await (await serveTailwindCss({} as any)).text()).toMatchSnapshot()
+    expect(
+      await (await serveTailwindCss("test/fixtures/tailwind.css")).text(),
+    ).toMatchSnapshot()
+    expect(
+      await (await serveTailwindCss("test/fixtures/tailwind.css")).text(),
+    ).toMatchSnapshot()
   })
 }

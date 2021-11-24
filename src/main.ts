@@ -3,17 +3,20 @@ import { readFile } from "fs/promises"
 import postcss from "postcss"
 import tailwindcss from "tailwindcss"
 
-export const defaultInputCss = `
+const defaultInputCss = `
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 `
 
-let cachedCss: string | undefined
+const cache = new Map<string | symbol, string>()
+const defaultCacheKey = Symbol("remix-tailwind-default")
 
 export async function serveTailwindCss(cssFilePath?: string) {
-  if (cachedCss) {
-    return cssResponse(cachedCss)
+  const cacheKey = cssFilePath || defaultCacheKey
+  const cachedResponse = cache.get(cacheKey)
+  if (process.env.NODE_ENV === "production" && cachedResponse) {
+    return cssResponse(cachedResponse)
   }
 
   const inputCss = cssFilePath
@@ -25,7 +28,7 @@ export async function serveTailwindCss(cssFilePath?: string) {
   })
 
   if (process.env.NODE_ENV === "production") {
-    cachedCss = css
+    cache.set(cacheKey, css)
   }
 
   return cssResponse(css)

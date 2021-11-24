@@ -1492,5 +1492,12 @@ Ensure the default browser behavior of the \`hidden\` attribute.
 [hidden] {
   display: none;
 }
+
+body {
+  --tw-bg-opacity: 1;
+  background-color: rgb(15 23 42 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(248 250 252 / var(--tw-text-opacity));
+}
 "
 `;
