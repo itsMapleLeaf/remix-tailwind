@@ -1,4 +1,4 @@
-import { createLoader } from "../src/main"
+import { serveTailwindCss } from "../src/main"
 
 const currentEnv = process.env.NODE_ENV
 
@@ -16,14 +16,12 @@ function defineTests(nodeEnv: "development" | "production") {
 
   test(`serving default css in ${nodeEnv}`, async () => {
     // test multiple times just to be sure
-    const loader = createLoader()
-    expect(await (await loader({} as any)).text()).toMatchSnapshot()
-    expect(await (await loader({} as any)).text()).toMatchSnapshot()
+    expect(await (await serveTailwindCss({} as any)).text()).toMatchSnapshot()
+    expect(await (await serveTailwindCss({} as any)).text()).toMatchSnapshot()
   })
 
   test(`serving custom css in ${nodeEnv}`, async () => {
-    const loader = createLoader("test/fixtures/tailwind.css")
-    expect(await (await loader({} as any)).text()).toMatchSnapshot()
-    expect(await (await loader({} as any)).text()).toMatchSnapshot()
+    expect(await (await serveTailwindCss({} as any)).text()).toMatchSnapshot()
+    expect(await (await serveTailwindCss({} as any)).text()).toMatchSnapshot()
   })
 }

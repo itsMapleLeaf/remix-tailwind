@@ -29,8 +29,10 @@ yarn add -D tailwindcss postcss
 1. Create a file at `app/routes/tailwindcss.tsx` or `app/routes/tailwindcss.js`:
 
    ```ts
-   import { createLoader } from "remix-tailwind"
-   export const loader = createLoader()
+   import type { LoaderFunction } from "remix"
+   import { serveTailwindCss } from "remix-tailwind"
+
+   export const loader: LoaderFunction = () => serveTailwindCss()
    ```
 
 1. Add a link to this route in `app/root.tsx`:
@@ -49,8 +51,10 @@ remix-tailwind uses a default CSS file, but you can provide a path to your own. 
 
 ```ts
 // app/routes/tailwindcss.tsx
-import { createLoader } from "remix-tailwind"
-export const loader = createLoader("app/tailwind.css")
+import type { LoaderFunction } from "remix"
+import { serveTailwindCss } from "remix-tailwind"
+
+export const loader: LoaderFunction = () => serveTailwindCss("app/tailwind.css")
 ```
 
 ```css

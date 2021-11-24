@@ -7,7 +7,6 @@ importers:
       '@itsmapleleaf/configs': ^1.0.0
       '@jest/types': ^27.2.5
       '@remix-run/node': '>=1'
-      '@remix-run/server-runtime': '>=1'
       '@types/jest': ^27.0.3
       '@types/node': ^16.11.9
       '@types/tailwindcss': ^2.2.4
@@ -31,7 +30,6 @@ importers:
       typescript: ^4.5.2
     dependencies:
       '@remix-run/node': 1.0.4
-      '@remix-run/server-runtime': 1.0.4
       '@types/node': 16.11.9
       '@types/tailwindcss': 2.2.4
     devDependencies:
