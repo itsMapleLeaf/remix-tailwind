@@ -17,7 +17,7 @@
   },
   "scripts": {
     "build": "tsup-node",
-    "test": "cross-env NODE_OPTIONS=\"--experimental-vm-modules --no-warnings\" node --inspect ./node_modules/jest/bin/jest.js --verbose --forceExit",
+    "test": "cross-env NODE_OPTIONS=\"--experimental-vm-modules --no-warnings\" jest --verbose --forceExit",
     "release": "release-it",
     "prepublishOnly": "pnpm lint && pnpm test",
     "lint": "eslint --ext js,ts,tsx .",
