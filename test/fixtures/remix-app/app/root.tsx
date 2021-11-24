@@ -11,7 +11,7 @@ import {
 } from "remix"
 
 export let links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: "/tailwindcss" }]
+  return [{ rel: "stylesheet", href: "/tailwindcss-custom" }]
 }
 
 export default function App() {
