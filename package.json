@@ -1,6 +1,6 @@
 {
   "name": "remix-tailwind",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Use TailwindCSS with Remix without an extra build step!",
   "author": "itsMapleLeaf",
   "license": "MIT",
