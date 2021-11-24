@@ -47,3 +47,16 @@ function toAbsolutePath(path: string): string {
   }
   return join(process.cwd(), path)
 }
+
+/**
+ * @deprecated The createLoader api has potential pitfalls and is not recommended. Use `serveTailwindCss` instead:
+ * ```ts
+ * import type { LoaderFunction } from "remix"
+ * import { serveTailwindCss } from "remix-tailwind"
+ *
+ * export const loader: LoaderFunction = () => serveTailwindCss()
+ * ```
+ */
+export function createLoader() {
+  return () => serveTailwindCss()
+}
