@@ -6,6 +6,9 @@
   "license": "MIT",
   "type": "module",
   "types": "dist/main.d.ts",
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "import": "./dist/main.js",
