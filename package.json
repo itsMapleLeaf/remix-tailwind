@@ -68,6 +68,11 @@
   "eslintConfig": {
     "extends": [
       "./node_modules/@itsmapleleaf/configs/eslint"
+    ],
+    "ignorePatterns": [
+      "**/test/fixtures/**",
+      "**/node_modules/**",
+      "**/dist/**"
     ]
   }
 }
