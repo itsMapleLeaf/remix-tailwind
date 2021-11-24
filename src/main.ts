@@ -57,6 +57,6 @@ function toAbsolutePath(path: string): string {
  * export const loader: LoaderFunction = () => serveTailwindCss()
  * ```
  */
-export function createLoader() {
-  return () => serveTailwindCss()
+export function createLoader(cssFilePath?: string) {
+  return () => serveTailwindCss(cssFilePath)
 }
