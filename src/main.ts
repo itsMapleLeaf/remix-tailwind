@@ -1,10 +1,10 @@
-import type { LoaderFunction } from "@remix-run/server-runtime"
-import { readFile, stat } from "fs/promises"
-import { dirname, join, parse } from "path"
+import { Response } from "@remix-run/node"
+import { LoaderFunction } from "@remix-run/server-runtime"
+import { readFile } from "node:fs/promises"
 import postcss from "postcss"
 import tailwindcss from "tailwindcss"
 
-const defaultInputCss = `
+export const defaultInputCss = `
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -22,9 +22,7 @@ export function createLoader(cssFilePath?: string): LoaderFunction {
       ? await readFile(cssFilePath, "utf-8")
       : defaultInputCss
 
-    const config = await loadTailwindConfig()
-
-    const { css } = await postcss(tailwindcss(config)).process(inputCss, {
+    const { css } = await postcss(tailwindcss).process(inputCss, {
       from: cssFilePath,
     })
 
@@ -40,44 +38,4 @@ function cssResponse(css: string): Response {
   return new Response(css, {
     headers: { "content-type": "text/css" },
   })
-}
-
-async function findTailwindConfigPath() {
-  let currentFolder = process.cwd()
-  let searchedPaths: string[] = []
-
-  do {
-    const configPath = join(currentFolder, "tailwind.config.js")
-    if (await exists(configPath)) {
-      return configPath
-    }
-    searchedPaths.push(configPath)
-    currentFolder = dirname(currentFolder)
-  } while (parse(currentFolder).root !== currentFolder)
-
-  const searchedPathsOutput = searchedPaths.map((dir) => `\t${dir}`).join("\n")
-  const errorMessage = `Could not find tailwind.config.js. Searched these paths:\n${searchedPathsOutput}`
-  throw new Error(errorMessage)
-}
-
-async function loadTailwindConfig() {
-  const configPath = await findTailwindConfigPath()
-  const configModule = await import(configPath)
-  const config = configModule.default || configModule
-
-  if (!config) {
-    throw new Error(
-      `Config at ${configPath} is invalid. Did you export the config?`,
-    )
-  }
-  return config
-}
-
-async function exists(path: string) {
-  try {
-    const result = await stat(path)
-    return result.isFile()
-  } catch (error) {
-    return false
-  }
 }
