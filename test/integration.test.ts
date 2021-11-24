@@ -5,7 +5,7 @@ import { setTimeout } from "timers/promises"
 
 beforeAll(async () => {
   await execa("pnpm", ["build"])
-})
+}, 10000)
 
 let child: ExecaChildProcess | undefined
 afterEach(() => {
