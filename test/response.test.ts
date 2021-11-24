@@ -1,5 +1,3 @@
-import postcss from "postcss"
-import tailwindcss from "tailwindcss"
 import { createLoader } from "../src/main"
 
 const currentEnv = process.env.NODE_ENV
@@ -28,9 +26,4 @@ function defineTests(nodeEnv: "development" | "production") {
     expect(await (await loader({} as any)).text()).toMatchSnapshot()
     expect(await (await loader({} as any)).text()).toMatchSnapshot()
   })
-}
-
-async function processCss(input: string) {
-  const { css } = await postcss(tailwindcss).process(input)
-  return css
 }

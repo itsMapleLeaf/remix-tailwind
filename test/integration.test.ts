@@ -1,5 +1,6 @@
 import { fetch } from "@remix-run/node"
-import { execa, ExecaChildProcess } from "execa"
+import type { ExecaChildProcess } from "execa"
+import { execa } from "execa"
 import { setTimeout } from "timers/promises"
 
 beforeAll(async () => {
@@ -48,7 +49,9 @@ async function assertResponses() {
 
 async function waitForResponse(path: string) {
   const startTime = Date.now()
-  while (true) {
+  let error: Error | undefined
+
+  while (error == undefined) {
     try {
       const url = new URL(`http://localhost:3000`)
       url.pathname = path
@@ -58,11 +61,13 @@ async function waitForResponse(path: string) {
         throw new Error(`Response failed: ${res.status} ${res.statusText}`)
       }
       return res
-    } catch (error) {
+    } catch (caught) {
       if (Date.now() - startTime > 10000) {
-        throw error
+        error = caught instanceof Error ? caught : new Error(String(caught))
       }
     }
     await setTimeout(100)
   }
+
+  throw error
 }

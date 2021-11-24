@@ -1,16 +1,4 @@
 {
-  "compilerOptions": {
-    "noEmit": true,
-    "target": "es2020",
-    "lib": ["es2020"],
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "checkJs": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "skipLibCheck": true
-  },
-  "exclude": ["dist", "node_modules", "test"]
+  "extends": "@itsmapleleaf/configs/tsconfig.app",
+  "exclude": ["dist", "node_modules", "test/fixtures"]
 }
