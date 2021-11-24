@@ -9,7 +9,7 @@ beforeAll(async () => {
 
 let child: ExecaChildProcess | undefined
 afterEach(() => {
-  child?.kill()
+  child?.cancel()
 })
 
 test("integration", async () => {
@@ -18,8 +18,9 @@ test("integration", async () => {
     cwd: "test/fixtures/remix-app",
     stdio: "inherit",
   })
+
   await assertResponses()
-  child.kill()
+  await cancelPromise(child)
 
   // prod
   await execa("pnpm", ["build"], {
@@ -74,4 +75,15 @@ async function waitForResponse(path: string) {
   }
 
   throw error
+}
+
+function cancelPromise(child: ExecaChildProcess) {
+  return new Promise<void>((resolve) => {
+    if (child.killed) {
+      resolve()
+    } else {
+      void child.once("exit", resolve)
+      child.kill(undefined, { forceKillAfterTimeout: 1000 })
+    }
+  })
 }
