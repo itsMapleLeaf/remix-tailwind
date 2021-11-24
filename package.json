@@ -16,7 +16,7 @@
     "build": "tsup-node",
     "test": "NODE_OPTIONS=\"--experimental-vm-modules --no-warnings\" jest --verbose",
     "release": "release-it",
-    "prepublishOnly": "pnpm build",
+    "prepublishOnly": "pnpm lint && pnpm test",
     "lint": "eslint --ext js,ts,tsx .",
     "lint-fix": "npm run lint -- --fix",
     "format": "prettier --write ."
