@@ -15,6 +15,7 @@ afterEach(() => {
 test("dev", async () => {
   child = execa("pnpm", ["dev"], {
     cwd: "test/fixtures/remix-app",
+    stdio: "inherit",
   })
   await assertResponses()
 }, 20000)
@@ -22,10 +23,12 @@ test("dev", async () => {
 test("prod", async () => {
   await execa("pnpm", ["build"], {
     cwd: "test/fixtures/remix-app",
+    stdio: "inherit",
   })
 
   child = execa("pnpm", ["start"], {
     cwd: "test/fixtures/remix-app",
+    stdio: "inherit",
   })
 
   await assertResponses()
