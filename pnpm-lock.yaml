@@ -13,6 +13,7 @@ importers:
       '@types/tailwindcss': ^2.2.4
       '@typescript-eslint/eslint-plugin': ^5.4.0
       '@typescript-eslint/parser': ^5.4.0
+      cross-env: ^7.0.3
       esbuild: ^0.13.15
       esbuild-jest: ^0.5.0
       eslint: ^8.3.0
@@ -39,6 +40,7 @@ importers:
       '@types/jest': 27.0.3
       '@typescript-eslint/eslint-plugin': 5.4.0_5c8ff4cecd5a55e744866c0654edac32
       '@typescript-eslint/parser': 5.4.0_eslint@8.3.0+typescript@4.5.2
+      cross-env: 7.0.3
       esbuild: 0.13.15
       esbuild-jest: 0.5.0_esbuild@0.13.15
       eslint: 8.3.0
@@ -2408,6 +2410,14 @@ packages:
       p-all: 2.1.0
       p-filter: 2.1.0
       p-map: 3.0.0
+    dev: true
+
+  /cross-env/7.0.3:
+    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
+    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
+    hasBin: true
+    dependencies:
+      cross-spawn: 7.0.3
     dev: true
 
   /cross-spawn/6.0.5:
