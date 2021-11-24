@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`dev 1`] = `
+exports[`integration 1`] = `
 "/*
 ! tailwindcss v3.0.0-alpha.2 | MIT License | https://tailwindcss.com
 *//*
@@ -372,7 +372,7 @@ Ensure the default browser behavior of the \`hidden\` attribute.
 "
 `;
 
-exports[`dev 2`] = `
+exports[`integration 2`] = `
 "/*
 ! tailwindcss v3.0.0-alpha.2 | MIT License | https://tailwindcss.com
 *//*
@@ -751,7 +751,7 @@ body {
 "
 `;
 
-exports[`prod 1`] = `
+exports[`integration 3`] = `
 "/*
 ! tailwindcss v3.0.0-alpha.2 | MIT License | https://tailwindcss.com
 *//*
@@ -1123,7 +1123,7 @@ Ensure the default browser behavior of the \`hidden\` attribute.
 "
 `;
 
-exports[`prod 2`] = `
+exports[`integration 4`] = `
 "/*
 ! tailwindcss v3.0.0-alpha.2 | MIT License | https://tailwindcss.com
 *//*
@@ -1491,13 +1491,6 @@ Ensure the default browser behavior of the \`hidden\` attribute.
 
 [hidden] {
   display: none;
-}
-
-body {
-  --tw-bg-opacity: 1;
-  background-color: rgb(15 23 42 / var(--tw-bg-opacity));
-  --tw-text-opacity: 1;
-  color: rgb(248 250 252 / var(--tw-text-opacity));
 }
 "
 `;

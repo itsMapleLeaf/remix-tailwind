@@ -12,15 +12,16 @@ afterEach(() => {
   child?.kill()
 })
 
-test("dev", async () => {
+test("integration", async () => {
+  // dev
   child = execa("pnpm", ["dev"], {
     cwd: "test/fixtures/remix-app",
     stdio: "inherit",
   })
   await assertResponses()
-}, 20000)
+  child.kill()
 
-test("prod", async () => {
+  // prod
   await execa("pnpm", ["build"], {
     cwd: "test/fixtures/remix-app",
     stdio: "inherit",
