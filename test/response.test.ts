@@ -1,6 +1,6 @@
 import postcss from "postcss"
 import tailwindcss from "tailwindcss"
-import { createLoader } from "./main"
+import { createLoader } from "../src/main"
 
 let currentEnv = process.env.NODE_ENV
 
