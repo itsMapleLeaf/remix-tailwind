@@ -62,7 +62,7 @@ async function waitForResponse(path: string) {
       }
       return res
     } catch (caught) {
-      if (Date.now() - startTime > 10000) {
+      if (Date.now() - startTime > 20000) {
         error = caught instanceof Error ? caught : new Error(String(caught))
       }
     }
