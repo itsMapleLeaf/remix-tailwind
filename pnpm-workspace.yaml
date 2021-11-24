@@ -1,2 +1,2 @@
 workspaces:
-  - test/remix-app
+  - test/fixtures/remix-app

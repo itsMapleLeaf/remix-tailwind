@@ -1,13 +1,12 @@
 {
   "compilerOptions": {
+    "noEmit": true,
     "target": "es2020",
     "lib": ["es2020"],
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "checkJs": true,
-    "declaration": true,
-    "outDir": "dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,

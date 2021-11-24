@@ -1,6 +1,6 @@
 import { Response } from "@remix-run/node"
 import { LoaderFunction } from "@remix-run/server-runtime"
-import { readFile } from "node:fs/promises"
+import { readFile } from "fs/promises"
 import postcss from "postcss"
 import tailwindcss from "tailwindcss"
 
