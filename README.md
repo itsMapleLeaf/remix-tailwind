@@ -6,16 +6,13 @@ Use [TailwindCSS](https://tailwindcss.com) with [Remix](https://remix.run) witho
 
 ```sh
 # npm
-npm install remix-tailwind
-npm install --dev tailwindcss postcss
+npm install remix-tailwind tailwindcss postcss
 
 # pnpm
-pnpm install remix-tailwind
-pnpm install --dev tailwindcss postcss
+pnpm install remix-tailwind tailwindcss postcss
 
 # yarn
-yarn add remix-tailwind
-yarn add -D tailwindcss postcss
+yarn add remix-tailwind tailwindcss postcss
 ```
 
 ## Usage
