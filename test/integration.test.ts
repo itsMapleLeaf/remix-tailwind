@@ -1,11 +1,11 @@
 import { fetch } from "@remix-run/node"
 import type { ExecaChildProcess } from "execa"
 import { execa } from "execa"
-import { setTimeout } from "timers/promises"
+import { setTimeout } from "node:timers/promises"
 
 beforeAll(async () => {
   await execa("pnpm", ["build"])
-}, 10000)
+}, 10_000)
 
 let child: ExecaChildProcess | undefined
 afterEach(() => {
@@ -34,7 +34,7 @@ test("integration", async () => {
   })
 
   await assertResponses()
-}, 20000)
+}, 20_000)
 
 async function assertResponses() {
   await waitForResponse("/")
@@ -61,13 +61,16 @@ async function waitForResponse(path: string) {
       const url = new URL(`http://localhost:3000`)
       url.pathname = path
 
-      const res = await fetch(url)
-      if (!res.ok) {
-        throw new Error(`Response failed: ${res.status} ${res.statusText}`)
+      const response = await fetch(url)
+      if (!response.ok) {
+        throw new Error(
+          `Response failed: ${response.status} ${response.statusText}`,
+        )
       }
-      return res
+      return response
+      // eslint-disable-next-line unicorn/catch-error-name
     } catch (caught) {
-      if (Date.now() - startTime > 20000) {
+      if (Date.now() - startTime > 20_000) {
         error = caught instanceof Error ? caught : new Error(String(caught))
       }
     }

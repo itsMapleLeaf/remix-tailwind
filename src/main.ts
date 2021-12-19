@@ -1,6 +1,6 @@
 import { Response } from "@remix-run/node"
-import { readFile } from "fs/promises"
-import { isAbsolute, join } from "path"
+import { readFile } from "node:fs/promises"
+import { isAbsolute, join } from "node:path"
 import postcss from "postcss"
 import tailwindcss from "tailwindcss"
 
@@ -57,6 +57,7 @@ function toAbsolutePath(path: string): string {
  * export const loader: LoaderFunction = () => serveTailwindCss()
  * ```
  */
+// eslint-disable-next-line import/no-unused-modules
 export function createLoader(cssFilePath?: string) {
   return () => serveTailwindCss(cssFilePath)
 }

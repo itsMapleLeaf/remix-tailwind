@@ -14,4 +14,5 @@ const config = {
     "<rootDir>/test/__snapshots__/.*",
   ],
 }
+// eslint-disable-next-line import/no-unused-modules
 export default config
