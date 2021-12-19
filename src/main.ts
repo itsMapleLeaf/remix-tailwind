@@ -1,6 +1,8 @@
+// remix can't handle node: imports yet
+/* eslint-disable unicorn/prefer-node-protocol */
 import { Response } from "@remix-run/node"
-import { readFile } from "node:fs/promises"
-import { isAbsolute, join } from "node:path"
+import { readFile } from "fs/promises"
+import path from "path"
 import postcss from "postcss"
 import tailwindcss from "tailwindcss"
 
@@ -41,11 +43,11 @@ function cssResponse(css: string): Response {
   })
 }
 
-function toAbsolutePath(path: string): string {
-  if (isAbsolute(path)) {
-    return path
+function toAbsolutePath(inputPath: string): string {
+  if (path.isAbsolute(inputPath)) {
+    return inputPath
   }
-  return join(process.cwd(), path)
+  return path.join(process.cwd(), inputPath)
 }
 
 /**
