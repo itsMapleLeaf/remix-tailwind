@@ -10,20 +10,20 @@
     "start": "remix-serve build"
   },
   "dependencies": {
-    "@remix-run/react": "^1.0.4",
-    "@remix-run/serve": "^1.0.4",
+    "@remix-run/react": "^1.1.1",
+    "@remix-run/serve": "^1.1.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "remix": "^1.0.4",
+    "remix": "^1.1.1",
     "remix-tailwind": "workspace:*"
   },
   "devDependencies": {
-    "@remix-run/dev": "^1.0.4",
-    "@types/react": "^17.0.24",
-    "@types/react-dom": "^17.0.9",
-    "postcss": "^8.3.11",
-    "tailwindcss": "^3.0.0-alpha.2",
-    "typescript": "^4.1.2"
+    "@remix-run/dev": "^1.1.1",
+    "@types/react": "^17.0.37",
+    "@types/react-dom": "^17.0.11",
+    "postcss": "^8.4.5",
+    "tailwindcss": "^3.0.7",
+    "typescript": "^4.5.4"
   },
   "engines": {
     "node": ">=14"
