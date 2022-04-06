@@ -3,7 +3,9 @@
 import { Response } from "@remix-run/node"
 import { readFile } from "fs/promises"
 import path from "path"
+import type { Postcss, Processor } from "postcss"
 import postcss from "postcss"
+import postcssrc from "postcss-load-config"
 import tailwindcss from "tailwindcss"
 
 const defaultInputCss = `
@@ -22,13 +24,25 @@ export async function serveTailwindCss(cssFilePath?: string) {
     return cssResponse(cachedResponse)
   }
 
-  const inputCss = cssFilePath
-    ? await readFile(cssFilePath, "utf-8")
+  let plugins: Parameters<Postcss> = [tailwindcss]
+  let options: Parameters<Processor["process"]>["1"] = {
+    from: cssFilePath,
+  }
+
+  try {
+    const postcssConfig = await postcssrc()
+    plugins = postcssConfig.plugins
+    options = postcssConfig.options
+    options.from = cssFilePath || options.from
+  } catch {
+    // just use the default ones
+  }
+
+  const inputCss = options.from
+    ? await readFile(options.from, "utf-8")
     : defaultInputCss
 
-  const { css } = await postcss(tailwindcss).process(inputCss, {
-    from: cssFilePath,
-  })
+  const { css } = await postcss(plugins).process(inputCss, options)
 
   if (process.env.NODE_ENV === "production") {
     cache.set(cacheKey, css)
